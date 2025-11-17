@@ -9,9 +9,10 @@ import Link from "next/link" // Import Link for client-side navigation
 
 export function Header() {
   const navItems = [
-    { name: "Features", href: "#features-section" },
-    { name: "Pricing", href: "#pricing-section" },
-    { name: "Testimonials", href: "#testimonials-section" }, // Changed from Docs to Testimonials
+    { name: "Funcionalidades", href: "#features-section" },
+    { name: "Precios", href: "#pricing-section" },
+    { name: "Preguntas frecuentes", href: "#faq-section" },
+    { name: "Contacto", href: "#contact-section" },
   ]
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -28,7 +29,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-foreground text-xl font-semibold">Pointer</span>
+            <span className="text-foreground text-xl font-semibold">GTIQ</span>
           </div>
           <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
@@ -46,7 +47,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer" className="hidden md:block">
             <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-              Try for Free
+              Solicitar más información
             </Button>
           </Link>
           <Sheet>
@@ -58,7 +59,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="bottom" className="bg-background border-t border-border text-foreground">
               <SheetHeader>
-                <SheetTitle className="text-left text-xl font-semibold text-foreground">Navigation</SheetTitle>
+                <SheetTitle className="text-left text-xl font-semibold text-foreground">Navegación</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-4 mt-6">
                 {navItems.map((item) => (
@@ -73,7 +74,7 @@ export function Header() {
                 ))}
                 <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer" className="w-full mt-4">
                   <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-                    Try for Free
+                    Solicitar más información
                   </Button>
                 </Link>
               </nav>

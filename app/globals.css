@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* Font Variables */
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    
     /* Themeable Colors - Restored to Original Vibe */
     --background: 210 11% 7%; /* #0f1211 */
     --foreground: 160 14% 93%; /* #e7eceb */
@@ -20,14 +24,14 @@
     --popover-foreground: 160 14% 93%;
 
     /* Primary Accent Colors */
-    --primary: 165 96% 71%; /* #78fcd6 */
-    --primary-foreground: 160 8% 6%; /* #0d0f0e */
-    --primary-dark: 160 100% 50%; /* #00ffb6 */
-    --primary-light: 160 48% 87%; /* New variable for lighter teal/green shades */
+    --primary: 210 96% 71%; /* Azul GTiQ */
+    --primary-foreground: 210 8% 6%; /* Texto oscuro para contraste */
+    --primary-dark: 210 100% 50%; /* Azul brillante */
+    --primary-light: 210 48% 87%; /* Azul claro */
 
     /* Secondary Accent Colors (for buttons, etc.) */
     --secondary: 160 14% 93%; /* #e7eceb */
-    --secondary-foreground: 165 14% 8%; /* #141a18 */
+    --secondary-foreground: 210 14% 8%; /* #141a18 */
 
     --accent: 240 2% 25%; /* #3f3f42 */
     --accent-foreground: 240 2% 96%; /* #f4f4f5 */
@@ -36,7 +40,7 @@
     --border-light: 210 17% 6% / 0.1; /* rgba(16,24,40,0.1) */
     --border-dark: 210 17% 6% / 0.05; /* rgba(16,24,40,0.05) */
 
-    --ring: 165 96% 71%;
+    --ring: 210 96% 71%;
 
     --radius: 0.5rem;
   }

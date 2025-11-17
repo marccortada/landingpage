@@ -1,6 +1,24 @@
+import { Shield, CheckCircle2, Zap } from "lucide-react"
+
 export function SocialProof() {
   return (
-    <section className="self-stretch py-16 flex flex-col justify-center items-center gap-6 overflow-hidden">
+    <section className="self-stretch py-16 flex flex-col justify-center items-center gap-8 overflow-hidden">
+      {/* Trust badges con iconos */}
+      <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 px-4">
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <Shield className="w-5 h-5 text-primary" />
+          <span className="text-sm font-medium">100% Normativa española</span>
+        </div>
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <Zap className="w-5 h-5 text-primary" />
+          <span className="text-sm font-medium">Sin instalación</span>
+        </div>
+        <div className="flex items-center gap-2 text-muted-foreground">
+          <CheckCircle2 className="w-5 h-5 text-primary" />
+          <span className="text-sm font-medium">GDPR Compliant</span>
+        </div>
+      </div>
+
       <div className="text-center text-gray-300 text-sm font-medium leading-tight">
         Empresas líderes que confían en nosotros
       </div>
