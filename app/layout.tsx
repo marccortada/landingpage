@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'GTiQ - Control horario inteligente para empresas modernas',
   description: 'GTiQ te ayuda a cumplir la normativa de fichaje en España con un sistema rápido, sencillo y con geolocalización precisa.',
   icons: {
-    icon: '/icon.svg',
+    icon: '/logo png.png',
   },
 }
 

@@ -12,16 +12,15 @@ export function LargeTestimonial() {
               </div>
               <div className="flex justify-start items-center gap-5">
                 <Image
-                  src="/images/guillermo-rauch.png"
-                  alt="Cristina Sardanyés"
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 relative rounded-full"
-                  style={{ border: "1px solid rgba(0, 0, 0, 0.08)" }}
+                  src="/logodec.png"
+                  alt="Dec Idiomes"
+                  width={64}
+                  height={64}
+                  className="w-16 h-16 relative object-contain"
                 />
                 <div className="flex flex-col justify-start items-start">
-                  <div className="text-foreground text-base font-medium leading-6">Cristina Sardanyés</div>
-                  <div className="text-muted-foreground text-sm font-normal leading-6">CEO de Dec Idiomes</div>
+                  <div className="text-foreground text-base font-medium leading-6">Dec Idiomes</div>
+                  <div className="text-muted-foreground text-sm font-normal leading-6 italic">Cristina Sardanyés CEO</div>
                 </div>
               </div>
             </div>

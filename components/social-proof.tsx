@@ -29,14 +29,24 @@ export function SocialProof() {
           className="h-8 opacity-60 hover:opacity-100 transition-opacity"
         />
         <img
-          src="/logos/logo04.svg"
-          alt="ChatGPT"
-          className="h-8 opacity-60 hover:opacity-100 transition-opacity"
+          src="/stripe.png"
+          alt="Stripe"
+          className="h-20 opacity-60 hover:opacity-100 transition-opacity"
         />
         <img
-          src="/logos/logo02.svg"
+          src="/cur.png"
           alt="Cursor"
-          className="h-8 opacity-60 hover:opacity-100 transition-opacity"
+          className="h-24 opacity-60 hover:opacity-100 transition-opacity"
+        />
+        <img
+          src="/sup.png"
+          alt="Supabase"
+          className="h-20 opacity-60 hover:opacity-100 transition-opacity"
+        />
+        <img
+          src="/dig.png"
+          alt="Digital Ocean"
+          className="h-24 opacity-60 hover:opacity-100 transition-opacity"
         />
       </div>
     </section>

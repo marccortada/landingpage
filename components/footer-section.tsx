@@ -1,6 +1,6 @@
 "use client"
 
-import { Twitter, Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 
 export function FooterSection() {
   return (
@@ -13,10 +13,10 @@ export function FooterSection() {
             Control horario inteligente para empresas modernas. Cumplimiento normativo garantizado.
           </p>
           <div className="flex justify-start items-start gap-3 mt-2">
-            <a href="#" aria-label="Twitter" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
-              <Twitter className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
+            <a href="https://www.instagram.com/_gnerai_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+              <Instagram className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
             </a>
-            <a href="#" aria-label="LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+            <a href="https://www.linkedin.com/company/gnerai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
               <Linkedin className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
             </a>
           </div>
