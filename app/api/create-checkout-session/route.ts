@@ -5,27 +5,60 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-12-18.acacia",
 })
 
-// Mapeo de planes a Price IDs de Stripe
-// IMPORTANTE: Debes crear estos productos/precios en Stripe Dashboard y reemplazar estos IDs
-const PLAN_PRICE_IDS: Record<string, string> = {
-  basico: process.env.STRIPE_PRICE_ID_BASICO || "price_basico",
-  pro: process.env.STRIPE_PRICE_ID_PRO || "price_pro",
-  avanzado: process.env.STRIPE_PRICE_ID_AVANZADO || "price_avanzado",
-  empresarial: process.env.STRIPE_PRICE_ID_EMPRESARIAL || "price_empresarial",
+// Mapeo de planes a Product IDs o Price IDs de Stripe
+// Puedes usar Product IDs (empiezan con prod_) o Price IDs (empiezan con price_)
+// Si usas Product IDs, el código buscará automáticamente el precio asociado
+const PLAN_IDS: Record<string, string> = {
+  basico: process.env.STRIPE_PRODUCT_ID_BASICO || process.env.STRIPE_PRICE_ID_BASICO || "",
+  pro: process.env.STRIPE_PRODUCT_ID_PRO || process.env.STRIPE_PRICE_ID_PRO || "",
+  avanzado: process.env.STRIPE_PRODUCT_ID_AVANZADO || process.env.STRIPE_PRICE_ID_AVANZADO || "",
+  empresarial: process.env.STRIPE_PRODUCT_ID_EMPRESARIAL || process.env.STRIPE_PRICE_ID_EMPRESARIAL || "",
+}
+
+// Función para obtener el Price ID desde un Product ID
+async function getPriceIdFromProduct(productId: string): Promise<string> {
+  // Si ya es un Price ID, devolverlo directamente
+  if (productId.startsWith("price_")) {
+    return productId
+  }
+
+  // Si es un Product ID, buscar los precios asociados
+  if (productId.startsWith("prod_")) {
+    const prices = await stripe.prices.list({
+      product: productId,
+      active: true,
+    })
+
+    if (prices.data.length === 0) {
+      throw new Error(`No se encontraron precios activos para el producto ${productId}`)
+    }
+
+    // Priorizar precio anual (interval: year) o el primero disponible
+    const annualPrice = prices.data.find((price) => price.recurring?.interval === "year")
+    if (annualPrice) {
+      return annualPrice.id
+    }
+
+    // Si no hay precio anual, usar el primero
+    return prices.data[0].id
+  }
+
+  throw new Error(`ID inválido: ${productId}. Debe ser un Product ID (prod_...) o Price ID (price_...)`)
 }
 
 export async function POST(request: NextRequest) {
   try {
     const { planId, planName, planPrice } = await request.json()
 
-    if (!planId || !PLAN_PRICE_IDS[planId]) {
+    if (!planId || !PLAN_IDS[planId]) {
       return NextResponse.json(
-        { error: "Plan no válido" },
+        { error: "Plan no válido o no configurado" },
         { status: 400 }
       )
     }
 
-    const priceId = PLAN_PRICE_IDS[planId]
+    const productOrPriceId = PLAN_IDS[planId]
+    const priceId = await getPriceIdFromProduct(productOrPriceId)
 
     // Crear sesión de checkout
     const session = await stripe.checkout.sessions.create({

@@ -3,6 +3,7 @@ import { CheckCircle2 } from "lucide-react"
 export function BenefitsSection() {
   const benefits = [
     "Ahorra tiempo en gestión de fichajes",
+    "Invitaciones de trabajadores que van directo a su panel asignado",
     "Cumple 100% con la normativa española",
     "Sin instalaciones ni complicaciones técnicas",
     "Acceso desde cualquier dispositivo",
@@ -41,5 +42,4 @@ export function BenefitsSection() {
     </section>
   )
 }
-
 

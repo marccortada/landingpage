@@ -34,7 +34,9 @@ Para cada plan, necesitas crear un producto y un precio en Stripe:
    - Moneda: EUR (€)
    - Intervalo: Anual
 
-4. **IMPORTANTE**: Copia el **Price ID** de cada plan (empieza con `price_`)
+4. **IMPORTANTE**: Copia el **Product ID** (empieza con `prod_`) o el **Price ID** (empieza con `price_`)
+   - Si usas Product ID, el código buscará automáticamente el precio anual asociado
+   - Si usas Price ID, se usará directamente ese precio
 
 ### 4. Configurar variables de entorno
 
@@ -45,16 +47,20 @@ Agrega las siguientes variables a tu archivo `.env.local`:
 STRIPE_SECRET_KEY=sk_test_... (o sk_live_... para producción)
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_... (o pk_live_... para producción)
 
-# Stripe Price IDs (reemplaza con los IDs reales de Stripe)
-STRIPE_PRICE_ID_BASICO=price_xxxxx
-STRIPE_PRICE_ID_PRO=price_xxxxx
-STRIPE_PRICE_ID_AVANZADO=price_xxxxx
-STRIPE_PRICE_ID_EMPRESARIAL=price_xxxxx
+# Stripe Product IDs o Price IDs (puedes usar cualquiera de los dos)
+# Si usas Product IDs, el código buscará automáticamente el precio anual
+# Si usas Price IDs, se usarán directamente
+STRIPE_PRODUCT_ID_BASICO=prod_xxxxx  # O STRIPE_PRICE_ID_BASICO=price_xxxxx
+STRIPE_PRODUCT_ID_PRO=prod_xxxxx     # O STRIPE_PRICE_ID_PRO=price_xxxxx
+STRIPE_PRODUCT_ID_AVANZADO=prod_xxxxx # O STRIPE_PRICE_ID_AVANZADO=price_xxxxx
+STRIPE_PRODUCT_ID_EMPRESARIAL=prod_xxxxx # O STRIPE_PRICE_ID_EMPRESARIAL=price_xxxxx
 
 # URL base de tu aplicación
 NEXT_PUBLIC_BASE_URL=http://localhost:3000 (desarrollo)
 # NEXT_PUBLIC_BASE_URL=https://tudominio.com (producción)
 ```
+
+**Nota**: Puedes usar Product IDs o Price IDs, o incluso mezclar ambos. El código detectará automáticamente qué tipo de ID es y funcionará correctamente.
 
 ### 5. Configurar webhooks (opcional pero recomendado)
 
@@ -98,7 +104,10 @@ Para probar pagos en modo de prueba, usa las tarjetas de prueba de Stripe:
 
 - Los precios están configurados como suscripciones anuales recurrentes
 - El plan Enterprise redirige al formulario de contacto (no usa Stripe)
-- Asegúrate de actualizar los Price IDs en las variables de entorno después de crear los productos en Stripe
+- Puedes usar **Product IDs** (`prod_...`) o **Price IDs** (`price_...`) en las variables de entorno
+- Si usas Product IDs, el código buscará automáticamente el precio anual asociado
+- Si un producto tiene múltiples precios, se priorizará el precio anual
+- Asegúrate de actualizar los IDs en las variables de entorno después de crear los productos en Stripe
 - En producción, cambia las URLs y claves a las de producción
 
 ## Soporte

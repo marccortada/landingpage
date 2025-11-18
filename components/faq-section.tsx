@@ -6,6 +6,11 @@ import { ChevronDown } from 'lucide-react'
 
 const faqData = [
   {
+    question: "¿Qué pasa cuando invito a un trabajador?",
+    answer:
+      "Toda invitación enviada por un owner genera un usuario con rol de trabajador. Tras aceptar el código recibido por correo, la plataforma lo lleva directamente a su página de trabajador vinculada a la empresa que lo invitó; no existe otra ruta posible.",
+  },
+  {
     question: "¿Qué es GTiQ?",
     answer:
       "GTiQ es una plataforma de control horario con geolocalización diseñada para empresas que quieren cumplir la normativa española y automatizar sus fichajes.",
