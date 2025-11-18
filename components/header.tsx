@@ -45,7 +45,11 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+          <Link
+            href="#contact-section"
+            onClick={(e) => handleScroll(e, "#contact-section")}
+            className="hidden md:block"
+          >
             <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
               Solicitar más información
             </Button>
@@ -72,7 +76,11 @@ export function Header() {
                     {item.name}
                   </Link>
                 ))}
-                <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer" className="w-full mt-4">
+                <Link
+                  href="#contact-section"
+                  onClick={(e) => handleScroll(e, "#contact-section")}
+                  className="w-full mt-4"
+                >
                   <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
                     Solicitar más información
                   </Button>

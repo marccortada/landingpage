@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "./header"
@@ -446,7 +448,14 @@ export function HeroSection() {
         </p>
       </div>
 
-      <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer" className="relative z-50">
+      <Link
+        href="#contact-section"
+        onClick={(e) => {
+          e.preventDefault()
+          document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" })
+        }}
+        className="relative z-50"
+      >
         <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-3 rounded-full font-medium text-base shadow-lg ring-1 ring-white/10">
           Solicitar más información
         </Button>

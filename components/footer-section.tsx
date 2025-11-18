@@ -28,27 +28,27 @@ export function FooterSection() {
           <div className="flex flex-col justify-start items-start gap-2">
             <a href="#features-section" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Funcionalidades
-            </a>
+          </a>
             <a href="#pricing-section" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Precios
-            </a>
+          </a>
             <a href="#faq-section" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Preguntas frecuentes
-            </a>
-          </div>
+          </a>
         </div>
+      </div>
 
         {/* Legal */}
         <div className="flex flex-col justify-start items-start gap-3">
           <h3 className="text-foreground text-sm font-semibold leading-5">Legal</h3>
           <div className="flex flex-col justify-start items-start gap-2">
-            <a href="#" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
+            <a href="/privacidad" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Política de privacidad
             </a>
-            <a href="#" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
+            <a href="/terminos" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Términos de servicio
             </a>
-            <a href="#" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
+            <a href="/cookies" className="text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               Cookies
             </a>
           </div>
@@ -58,13 +58,13 @@ export function FooterSection() {
         <div className="flex flex-col justify-start items-start gap-3">
           <h3 className="text-foreground text-sm font-semibold leading-5">Contacto</h3>
           <div className="flex flex-col justify-start items-start gap-3">
-            <a href="mailto:info@gtiq.es" className="flex items-center gap-2 text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
+            <a href="mailto:info@gneraitiq.com" className="flex items-center gap-2 text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               <Mail className="w-4 h-4" />
-              info@gtiq.es
+              info@gneraitiq.com
             </a>
-            <a href="tel:+34900123456" className="flex items-center gap-2 text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
+            <a href="tel:+34744769246" className="flex items-center gap-2 text-muted-foreground text-sm font-normal leading-5 hover:text-foreground transition-colors">
               <Phone className="w-4 h-4" />
-              +34 900 123 456
+              +34 744 769 246
             </a>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function FooterSection() {
           © {new Date().getFullYear()} GTiQ. Todos los derechos reservados.
         </p>
         <p className="text-muted-foreground text-xs font-normal">
-          Desarrollado por gnerai
+          POWERED BY GNERAI
         </p>
       </div>
     </footer>

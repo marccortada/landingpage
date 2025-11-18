@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -110,7 +112,13 @@ export function CTASection() {
             Gestiona fichajes, equipos y horarios desde una sola plataforma.
           </p>
         </div>
-        <Link href="https://vercel.com/home" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="#contact-section"
+          onClick={(e) => {
+            e.preventDefault()
+            document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" })
+          }}
+        >
           <Button
             className="px-[30px] py-2 bg-secondary text-secondary-foreground text-base font-medium leading-6 rounded-[99px] shadow-[0px_0px_0px_4px_rgba(255,255,255,0.13)] hover:bg-secondary/90 transition-all duration-200"
             size="lg"

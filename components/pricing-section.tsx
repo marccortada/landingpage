@@ -1,14 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Check } from 'lucide-react'
+import { Check, Loader2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(true)
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
 
   const pricingPlans = [
     {
+      id: "basico",
       name: "Básico",
       monthlyPrice: "119 €/año",
       annualPrice: "119 €/año",
@@ -30,6 +32,7 @@ export function PricingSection() {
       urgency: "Plazas limitadas",
     },
     {
+      id: "pro",
       name: "Pro",
       monthlyPrice: "189 €/año",
       annualPrice: "189 €/año",
@@ -50,6 +53,7 @@ export function PricingSection() {
       urgency: "Más popular",
     },
     {
+      id: "avanzado",
       name: "Avanzado",
       monthlyPrice: "289 €/año",
       annualPrice: "289 €/año",
@@ -68,6 +72,7 @@ export function PricingSection() {
         "bg-secondary shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] text-secondary-foreground text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-secondary/90",
     },
     {
+      id: "empresarial",
       name: "Empresarial",
       monthlyPrice: "489 €/año",
       annualPrice: "489 €/año",
@@ -86,6 +91,7 @@ export function PricingSection() {
         "bg-zinc-300 shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] outline outline-0.5 outline-[#1e29391f] outline-offset-[-0.5px] text-gray-800 text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-zinc-400",
     },
     {
+      id: "enterprise",
       name: "Enterprise",
       monthlyPrice: "Consultar",
       annualPrice: "Consultar",
@@ -104,6 +110,50 @@ export function PricingSection() {
         "bg-secondary shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] text-secondary-foreground text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-secondary/90",
     },
   ]
+
+  const handlePlanClick = async (plan: typeof pricingPlans[0]) => {
+    // Si es Enterprise, redirigir al formulario de contacto
+    if (plan.id === "enterprise") {
+      const contactSection = document.getElementById("contact-section")
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" })
+      }
+      return
+    }
+
+    setLoadingPlan(plan.id)
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          planId: plan.id,
+          planName: plan.name,
+          planPrice: plan.annualPrice,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al crear la sesión de pago")
+      }
+
+      // Redirigir a Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error("No se recibió la URL de checkout")
+      }
+    } catch (error: any) {
+      console.error("Error:", error)
+      alert(error.message || "Error al procesar el pago. Por favor, inténtalo de nuevo.")
+      setLoadingPlan(null)
+    }
+  }
 
   return (
     <section className="w-full px-5 overflow-hidden flex flex-col justify-start items-center my-0 py-8 md:py-14">
@@ -147,15 +197,15 @@ export function PricingSection() {
             <div className="self-stretch flex flex-col justify-start items-start gap-6">
               <div className="self-stretch flex flex-col justify-start items-start gap-8">
                 <div className="w-full flex flex-col gap-2">
-                  <div
-                    className={`w-full h-5 text-sm font-medium leading-tight ${plan.popular ? "text-primary-foreground" : "text-zinc-200"}`}
-                  >
-                    {plan.name}
-                    {plan.popular && (
-                      <div className="ml-2 px-2 overflow-hidden rounded-full justify-center items-center gap-2.5 inline-flex mt-0 py-0.5 bg-gradient-to-b from-primary-light/50 to-primary-light bg-white">
-                        <div className="text-center text-primary-foreground text-xs font-normal leading-tight break-words">
-                          Popular
-                        </div>
+                <div
+                  className={`w-full h-5 text-sm font-medium leading-tight ${plan.popular ? "text-primary-foreground" : "text-zinc-200"}`}
+                >
+                  {plan.name}
+                  {plan.popular && (
+                    <div className="ml-2 px-2 overflow-hidden rounded-full justify-center items-center gap-2.5 inline-flex mt-0 py-0.5 bg-gradient-to-b from-primary-light/50 to-primary-light bg-white">
+                      <div className="text-center text-primary-foreground text-xs font-normal leading-tight break-words">
+                        Popular
+                      </div>
                       </div>
                     )}
                   </div>
@@ -198,11 +248,11 @@ export function PricingSection() {
                         </div>
                       </>
                     ) : (
-                      <div
-                        className={`text-3xl font-medium leading-10 ${plan.popular ? "text-primary-foreground" : "text-zinc-50"}`}
-                      >
-                        {plan.annualPrice}
-                      </div>
+                    <div
+                      className={`text-3xl font-medium leading-10 ${plan.popular ? "text-primary-foreground" : "text-zinc-50"}`}
+                    >
+                      {plan.annualPrice}
+                    </div>
                     )}
                   </div>
                   <div
@@ -213,14 +263,20 @@ export function PricingSection() {
                 </div>
               </div>
               <Button
-                className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass}`}
+                onClick={() => handlePlanClick(plan)}
+                disabled={loadingPlan === plan.id}
+                className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass} ${loadingPlan === plan.id ? "opacity-50 cursor-not-allowed" : ""}`}
               >
                 <div className="px-1.5 flex justify-center items-center gap-2">
-                  <span
-                    className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
-                  >
-                    {plan.buttonText}
-                  </span>
+                  {loadingPlan === plan.id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <span
+                      className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
+                    >
+                      {plan.buttonText}
+                    </span>
+                  )}
                 </div>
               </Button>
             </div>
