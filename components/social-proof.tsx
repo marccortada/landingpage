@@ -2,7 +2,7 @@ import { Shield, CheckCircle2, Zap } from "lucide-react"
 
 export function SocialProof() {
   return (
-    <section className="self-stretch py-16 flex flex-col justify-center items-center gap-8 overflow-hidden">
+    <section className="w-full py-8 sm:py-12 md:py-16 flex flex-col justify-center items-center gap-6 sm:gap-7 md:gap-8 overflow-hidden">
       {/* Trust badges con iconos */}
       <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 px-4">
         <div className="flex items-center gap-2 text-muted-foreground">

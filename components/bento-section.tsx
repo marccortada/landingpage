@@ -68,20 +68,20 @@ export function BentoSection() {
   ]
 
   return (
-    <section className="w-full px-5 flex flex-col justify-center items-center overflow-visible bg-transparent">
-      <div className="w-full py-8 md:py-16 relative flex flex-col justify-start items-start gap-6">
+    <section className="w-full flex flex-col justify-center items-center overflow-visible bg-transparent">
+      <div className="w-full py-8 sm:py-12 md:py-16 relative flex flex-col justify-start items-start gap-6 sm:gap-8">
         <div className="w-[547px] h-[938px] absolute top-[614px] left-[80px] origin-top-left rotate-[-33.39deg] bg-primary/10 blur-[130px] z-0" />
-        <div className="self-stretch py-8 md:py-14 flex flex-col justify-center items-center gap-2 z-10">
-          <div className="flex flex-col justify-start items-center gap-4">
-            <h2 className="w-full max-w-[655px] text-center text-foreground text-4xl md:text-6xl font-semibold leading-tight md:leading-[66px]">
+        <div className="self-stretch py-6 sm:py-8 md:py-12 lg:py-14 flex flex-col justify-center items-center gap-3 sm:gap-4 z-10">
+          <div className="flex flex-col justify-start items-center gap-3 sm:gap-4">
+            <h2 className="w-full max-w-[655px] text-center text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight sm:leading-tight md:leading-[60px] lg:leading-[66px] px-4">
               Optimiza tu flujo de trabajo con GTiQ
             </h2>
-            <p className="w-full max-w-[600px] text-center text-muted-foreground text-lg md:text-xl font-medium leading-relaxed">
+            <p className="w-full max-w-[600px] text-center text-muted-foreground text-base sm:text-lg md:text-xl font-medium leading-relaxed px-4">
               Todo lo que necesitas para gestionar fichajes, ausencias y el control horario de tu equipo.
             </p>
           </div>
         </div>
-        <div className="self-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 z-10">
+        <div className="self-stretch grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 z-10">
           {cards.map((card) => (
             <BentoCard key={card.title} {...card} />
           ))}

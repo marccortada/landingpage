@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export function CTASection() {
   return (
-    <section className="w-full pt-20 md:pt-60 lg:pt-60 pb-10 md:pb-20 px-5 relative flex flex-col justify-center items-center overflow-visible">
+    <section className="w-full pt-12 sm:pt-16 md:pt-40 lg:pt-60 pb-8 sm:pb-12 md:pb-16 lg:pb-20 relative flex flex-col justify-center items-center overflow-visible px-4 sm:px-6">
       <div className="absolute inset-0 top-[-90px]">
         <svg
           className="w-full h-full"
@@ -103,12 +103,12 @@ export function CTASection() {
           </defs>
         </svg>
       </div>
-      <div className="relative z-10 flex flex-col justify-start items-center gap-9 max-w-4xl mx-auto">
-        <div className="flex flex-col justify-start items-center gap-4 text-center">
-          <h2 className="text-foreground text-4xl md:text-5xl lg:text-[68px] font-semibold leading-tight md:leading-tight lg:leading-[76px] break-words max-w-[435px]">
+      <div className="relative z-10 flex flex-col justify-start items-center gap-6 sm:gap-7 md:gap-8 lg:gap-9 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col justify-start items-center gap-3 sm:gap-4 text-center px-4">
+          <h2 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[68px] font-semibold leading-tight sm:leading-tight md:leading-tight lg:leading-[76px] break-words max-w-[435px]">
             El control horario nunca había sido tan sencillo
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base font-medium leading-[18.20px] md:leading-relaxed break-words max-w-2xl">
+          <p className="text-muted-foreground text-sm sm:text-base font-medium leading-relaxed break-words max-w-2xl">
             Gestiona fichajes, equipos y horarios desde una sola plataforma.
           </p>
         </div>

@@ -23,22 +23,22 @@ export function GuaranteeSection() {
   ]
 
   return (
-    <section className="w-full px-5 py-16 md:py-20 overflow-hidden flex flex-col justify-center items-center relative">
+    <section className="w-full py-8 sm:py-12 md:py-16 lg:py-20 overflow-hidden flex flex-col justify-center items-center relative">
       {/* Fondo sutil */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/3 to-transparent" />
       
-      <div className="self-stretch max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col justify-center items-center gap-4 mb-12 md:mb-16">
-          <h2 className="text-center text-foreground text-3xl md:text-4xl font-semibold leading-tight">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+          <h2 className="text-center text-foreground text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight px-4">
             Sin riesgo, sin complicaciones
           </h2>
-          <p className="text-center text-muted-foreground text-sm md:text-base font-medium leading-relaxed max-w-[600px]">
+          <p className="text-center text-muted-foreground text-sm sm:text-base font-medium leading-relaxed max-w-[600px] px-4">
             Estamos tan seguros de que GTiQ te ayudará que te ofrecemos estas garantías
           </p>
         </div>
         
         {/* Diseño horizontal con badges destacados */}
-        <div className="flex flex-col md:flex-row items-stretch gap-6 md:gap-4">
+        <div className="flex flex-col sm:flex-col md:flex-row items-stretch gap-4 sm:gap-5 md:gap-4 lg:gap-6">
           {guarantees.map((guarantee, index) => {
             const Icon = guarantee.icon
             return (

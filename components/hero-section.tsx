@@ -8,8 +8,8 @@ import Link from "next/link"
 export function HeroSection() {
   return (
     <section
-      className="flex flex-col items-center text-center relative mx-auto rounded-2xl overflow-hidden my-6 py-0 px-4
-         w-full h-[400px] md:w-[1220px] md:h-[600px] lg:h-[810px] md:px-0"
+      className="flex flex-col items-center text-center relative mx-auto rounded-2xl overflow-hidden my-4 sm:my-6 py-0 px-4 sm:px-6
+         w-full h-[400px] sm:h-[450px] md:w-[1220px] md:h-[600px] lg:h-[810px] md:px-0"
     >
       {/* SVG Background */}
       <div className="absolute inset-0 z-0">
@@ -439,11 +439,11 @@ export function HeroSection() {
         <Header />
       </div>
 
-      <div className="relative z-10 space-y-4 md:space-y-5 lg:space-y-6 mb-6 md:mb-7 lg:mb-9 max-w-md md:max-w-[500px] lg:max-w-[588px] mt-16 md:mt-[120px] lg:mt-[160px] px-4">
-        <h1 className="text-foreground text-3xl md:text-4xl lg:text-6xl font-semibold leading-tight">
+      <div className="relative z-10 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 mb-4 sm:mb-6 md:mb-7 lg:mb-9 max-w-md sm:max-w-lg md:max-w-[500px] lg:max-w-[588px] mt-12 sm:mt-14 md:mt-[120px] lg:mt-[160px] px-4 sm:px-6">
+        <h1 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight">
           Control horario inteligente para empresas modernas
         </h1>
-        <p className="text-muted-foreground text-base md:text-base lg:text-lg font-medium leading-relaxed max-w-lg mx-auto">
+        <p className="text-muted-foreground text-sm sm:text-base md:text-base lg:text-lg font-medium leading-relaxed max-w-lg mx-auto">
           GTiQ te ayuda a cumplir la normativa de fichaje en España con un sistema rápido, sencillo y con geolocalización precisa.
         </p>
       </div>

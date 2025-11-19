@@ -4,8 +4,8 @@ import { Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 
 export function FooterSection() {
   return (
-    <footer className="w-full max-w-[1320px] mx-auto px-5 py-12 md:py-16 border-t border-border/50">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+    <footer className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 border-t border-border/50">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
         {/* Brand Section */}
         <div className="flex flex-col justify-start items-start gap-4">
           <div className="text-foreground text-xl font-semibold">GTiQ</div>

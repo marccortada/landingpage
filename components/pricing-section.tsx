@@ -1,12 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Check, Loader2 } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(true)
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
 
   const pricingPlans = [
     {
@@ -112,51 +111,23 @@ export function PricingSection() {
   ]
 
   const handlePlanClick = async (plan: typeof pricingPlans[0]) => {
-    // Si es Enterprise, redirigir al formulario de contacto
-    if (plan.id === "enterprise") {
-      const contactSection = document.getElementById("contact-section")
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" })
-      }
-      return
-    }
-
-    setLoadingPlan(plan.id)
-
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          planId: plan.id,
-          planName: plan.name,
-          planPrice: plan.annualPrice,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || "Error al crear la sesión de pago")
-      }
-
-      // Redirigir a Stripe Checkout
-      if (data.url) {
-        window.location.href = data.url
-      } else {
-        throw new Error("No se recibió la URL de checkout")
-      }
-    } catch (error: any) {
-      console.error("Error:", error)
-      alert(error.message || "Error al procesar el pago. Por favor, inténtalo de nuevo.")
-      setLoadingPlan(null)
+    // Redirigir al formulario de contacto con el plan seleccionado
+    const contactSection = document.getElementById("contact-section")
+    if (contactSection) {
+      // Guardar el plan seleccionado en sessionStorage para que el formulario lo use
+      sessionStorage.setItem("selectedPlan", plan.id)
+      sessionStorage.setItem("selectedPlanName", plan.name)
+      contactSection.scrollIntoView({ behavior: "smooth" })
+      
+      // Disparar un evento personalizado para que el formulario se actualice
+      window.dispatchEvent(new CustomEvent("planSelected", { 
+        detail: { planId: plan.id, planName: plan.name } 
+      }))
     }
   }
 
   return (
-    <section className="w-full px-5 overflow-hidden flex flex-col justify-start items-center my-0 py-8 md:py-14">
+    <section className="w-full overflow-hidden flex flex-col justify-start items-center py-8 sm:py-12 md:py-16">
       {/* Banner de urgencia */}
       <div className="w-full max-w-[1400px] mx-auto mb-6">
         <div className="relative overflow-hidden rounded-xl border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 p-4 md:p-6">
@@ -187,7 +158,7 @@ export function PricingSection() {
           </p>
         </div>
       </div>
-      <div className="self-stretch px-5 flex flex-wrap justify-center items-start gap-4 md:gap-6 mt-6 max-w-[1400px] mx-auto">
+      <div className="w-full px-4 sm:px-6 flex flex-wrap justify-center items-start gap-4 sm:gap-5 md:gap-6 mt-6 sm:mt-8 max-w-[1400px] mx-auto">
         {pricingPlans.map((plan) => (
           <div
             key={plan.name}
@@ -264,19 +235,14 @@ export function PricingSection() {
               </div>
               <Button
                 onClick={() => handlePlanClick(plan)}
-                disabled={loadingPlan === plan.id}
-                className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass} ${loadingPlan === plan.id ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass}`}
               >
                 <div className="px-1.5 flex justify-center items-center gap-2">
-                  {loadingPlan === plan.id ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <span
-                      className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
-                    >
-                      {plan.buttonText}
-                    </span>
-                  )}
+                  <span
+                    className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
+                  >
+                    {plan.id === "enterprise" ? "Contactar" : "Solicitar información"}
+                  </span>
                 </div>
               </Button>
             </div>
