@@ -112,12 +112,12 @@ export function PricingSection() {
 
   const handlePlanClick = async (plan: typeof pricingPlans[0]) => {
     // Redirigir al formulario de contacto con el plan seleccionado
-    const contactSection = document.getElementById("contact-section")
-    if (contactSection) {
+      const contactSection = document.getElementById("contact-section")
+      if (contactSection) {
       // Guardar el plan seleccionado en sessionStorage para que el formulario lo use
       sessionStorage.setItem("selectedPlan", plan.id)
       sessionStorage.setItem("selectedPlanName", plan.name)
-      contactSection.scrollIntoView({ behavior: "smooth" })
+        contactSection.scrollIntoView({ behavior: "smooth" })
       
       // Disparar un evento personalizado para que el formulario se actualice
       window.dispatchEvent(new CustomEvent("planSelected", { 
@@ -238,11 +238,11 @@ export function PricingSection() {
                 className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass}`}
               >
                 <div className="px-1.5 flex justify-center items-center gap-2">
-                  <span
-                    className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
-                  >
+                    <span
+                      className={`text-center text-sm font-medium leading-tight ${plan.name === "Básico" || plan.name === "Empresarial" ? "text-gray-800" : plan.name === "Pro" ? "text-primary" : "text-zinc-950"}`}
+                    >
                     {plan.id === "enterprise" ? "Contactar" : "Solicitar información"}
-                  </span>
+                    </span>
                 </div>
               </Button>
             </div>
